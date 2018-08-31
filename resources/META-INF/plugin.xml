@@ -1,0 +1,43 @@
+<idea-plugin>
+  <id>com.vigrep.plugins.recentprojects</id>
+  <name>RecentProjects</name>
+  <version>1.0</version>
+  <vendor email="vigrep@163.com" url="http://www.github.com/vigrep">任帅</vendor>
+
+  <change-notes><![CDATA[
+  <p>1.0:</p>
+  <ul>
+    <li>显示面板大小可调整</li>
+    <li>工程名显示更多路径信息</li>
+  </ul>
+    ]]>
+  </change-notes>
+
+    <description><![CDATA[
+  <p>打开最近的工程</p>
+    ]]></description>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="com.vigrep.plugins.recentprojects" class="OpenRecentProjectAction" text="RecentProjects"
+            icon="/icon_recent.png"
+    >
+      <add-to-group group-id="NavBarToolBar" anchor="first"/>
+      <add-to-group group-id="MainToolBar" anchor="last"/>
+    </action>
+  </actions>
+
+</idea-plugin>
