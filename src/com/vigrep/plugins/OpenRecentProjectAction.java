@@ -1,20 +1,8 @@
-import com.intellij.ide.RecentProjectsManagerImpl;
-import com.intellij.ide.ReopenProjectAction;
-import com.intellij.ide.actions.RecentProjectsGroup;
+package com.vigrep.plugins;
+
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.ui.DialogBuilder;
-import com.intellij.ui.components.JBList;
-import com.intellij.ui.components.JBPanel;
-
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.plaf.ListUI;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * 因为android studio 的open recent project 时，名称总是显示项目的根目录名，路径长的时候，显示不全，面板又不可调整大小

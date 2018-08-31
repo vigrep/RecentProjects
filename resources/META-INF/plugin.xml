@@ -1,6 +1,6 @@
 <idea-plugin>
-  <id>com.vigrep.plugins.recentprojects</id>
-  <name>RecentProjects</name>
+  <id>com.vigrep.plugin.recentprojects</id>
+  <name>Recent Projects</name>
   <version>1.0</version>
   <vendor email="vigrep@163.com" url="http://www.github.com/vigrep">任帅</vendor>
 
@@ -18,7 +18,7 @@
     ]]></description>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="173.0"/>
+  <idea-version since-build="140.0"/>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
        on how to target different products -->
@@ -32,7 +32,7 @@
 
   <actions>
     <!-- Add your actions here -->
-    <action id="com.vigrep.plugins.recentprojects" class="OpenRecentProjectAction" text="RecentProjects"
+    <action id="com.vigrep.plugin.recentprojects" class="com.vigrep.plugins.OpenRecentProjectAction" text="Recent Projects"
             icon="/icon_recent.png"
     >
       <add-to-group group-id="NavBarToolBar" anchor="first"/>

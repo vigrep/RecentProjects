@@ -1,4 +1,4 @@
-/**
+package com.vigrep.plugins; /**
  * 拷贝自package com.intellij.openapi.wm.impl.welcomeScreen.RecentProjectPanel.java， 修改
  * Created by RS on 2018/8/31.
  */
@@ -13,13 +13,11 @@ import com.intellij.ide.PowerSaveMode.Listener;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.CustomShortcutSet;
 import com.intellij.openapi.application.ApplicationActivationListener;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.ui.VerticalFlowLayout;
-import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.util.SystemInfo;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.util.io.UniqueNameBuilder;
@@ -28,7 +26,6 @@ import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.wm.IdeFocusManager;
 import com.intellij.openapi.wm.IdeFrame;
 import com.intellij.openapi.wm.impl.welcomeScreen.BottomLineBorder;
-import com.intellij.openapi.wm.impl.welcomeScreen.WelcomeScreenColors;
 import com.intellij.ui.ClickListener;
 import com.intellij.ui.Gray;
 import com.intellij.ui.JBColor;
@@ -36,7 +33,6 @@ import com.intellij.ui.ListUtil;
 import com.intellij.ui.components.JBList;
 import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.speedSearch.ListWithFilter;
-import com.intellij.util.Function;
 import com.intellij.util.PathUtil;
 import com.intellij.util.SystemProperties;
 import com.intellij.util.concurrency.AppExecutorUtil;
@@ -81,6 +77,7 @@ import javax.swing.KeyStroke;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -88,6 +85,9 @@ public class RecentProjectPanel extends JPanel {
     private static final Color BORDER_COLOR = new JBColor(Gray._190, Gray._85);
     private static final Color CAPTION_BACKGROUND = new JBColor(Gray._210, Gray._75);
     private static final Color CAPTION_FOREGROUND = new JBColor(Color.black, Gray._197);
+
+    private static final int DEFAULT_WIDTH = 520;
+    private static final int DEFAULT_HEIGHT = 312;
 
     public static final String RECENT_PROJECTS_LABEL = "Recent Projects";
     protected final JBList myList;
@@ -112,6 +112,7 @@ public class RecentProjectPanel extends JPanel {
     private OpenRecentProjectAction.OnItemClickListener itemClickListener;
     public RecentProjectPanel(OpenRecentProjectAction.OnItemClickListener itemClickListener) {
         super(new BorderLayout());
+        setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));//FIXME: debug 窗口大小
         this.itemClickListener = itemClickListener;
         this.myHoverIndex = -1;
         this.closeButtonInset = JBUI.scale(7);
@@ -521,9 +522,10 @@ public class RecentProjectPanel extends JPanel {
                 }
                 int idx = path.lastIndexOf('/', path.lastIndexOf('/') - 1);
                 String showName = path.substring(idx);
-                this.myName.setText(showName);
+                this.myName.setText(showName);//FIXME: debug
+                this.myPath.setText(this.getTitle2Text(item, this.myPath, JBUI.scale(0)));//FIXME: debug
 //                this.myName.setText(item.getTemplatePresentation().getText());
-                this.myPath.setText(this.getTitle2Text(item, this.myPath, JBUI.scale(40)));
+//                this.myPath.setText(this.getTitle2Text(item, this.myPath, JBUI.scale(40)));
             } else if (value instanceof ProjectGroupActionGroup) {
                 ProjectGroupActionGroup group = (ProjectGroupActionGroup)value;
                 this.myName.setText(group.getGroup().getName());
@@ -577,7 +579,7 @@ public class RecentProjectPanel extends JPanel {
 
         public Dimension getPreferredSize() {
             Dimension size = super.getPreferredSize();
-            return new Dimension(Math.min(size.width, JBUI.scale(245)), size.height);
+            return new Dimension(Math.min(size.width, JBUI.scale(DEFAULT_WIDTH)), size.height);//FIXME: debug
         }
 
         @NotNull
