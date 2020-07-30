@@ -1,5 +1,6 @@
 package com.vigrep.plugins;
 
+import com.intellij.ide.actions.OpenFileAction;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.ui.DialogBuilder;
